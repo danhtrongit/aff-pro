@@ -3,7 +3,7 @@
 class AFF_User_Order extends AFF_App
     {
 
-    static $table = 'vuacode_user_order';
+    static $table = 'affpro_user_order';
 
 
     static function approveCommission($order_id, $status)
@@ -211,7 +211,7 @@ class AFF_User_Order extends AFF_App
 
         // Apply Coupon
         if ( $ref_coupon )
-            $coupon = MH_Query::init( null, 'vuacode_coupons' )->where( 'coupon', $ref_coupon )->first();
+            $coupon = MH_Query::init( null, 'affpro_coupons' )->where( 'coupon', $ref_coupon )->first();
 
         $fees              = $order->get_fees();
         $fee_total         = 0;
@@ -307,7 +307,7 @@ class AFF_User_Order extends AFF_App
 
         //Apply Coupon
         if ( $ref_coupon ) {
-            $coupon = MH_Query::init( null, 'vuacode_coupons' )->where( 'coupon', $ref_coupon )->first();
+            $coupon = MH_Query::init( null, 'affpro_coupons' )->where( 'coupon', $ref_coupon )->first();
             if ( $coupon ) {
                 $total              = $total * 100 / (100 - $coupon['value']);
                 $commission_percent = $commission_percent - $coupon['value'];
@@ -404,7 +404,7 @@ class AFF_User_Order extends AFF_App
 
 
             // Thiết lập % hoa hồng đa cấp user_vip
-            $ancestors = MH_Query::init( null, 'vuacode_user_relationships' )->select( 'ancestor_id, distance' )->where( 'descendant_id', $user->ID )->where( 'distance', '>=', 1 )->where( 'distance', '<=', 999 )->order_by( 'distance', 'ASC' )->get();
+            $ancestors = MH_Query::init( null, 'affpro_user_relationships' )->select( 'ancestor_id, distance' )->where( 'descendant_id', $user->ID )->where( 'distance', '>=', 1 )->where( 'distance', '<=', 999 )->order_by( 'distance', 'ASC' )->get();
             if ( $ancestors ) {
                 foreach ( $ancestors as $key => $an ) {
                     if ( $an['distance'] == 0 )
@@ -542,7 +542,7 @@ class AFF_User_Order extends AFF_App
         $query                   = self::buildQuery( $query, $filters );
         $result_completed_orders = $query->group_by( 'DATE_FORMAT(date, "%d-%m-%Y")' )->order_by( 'date' )->get();
 
-        $query = MH_Query::init( null, 'vuacode_traffics' )->select( 'DATE_FORMAT(date, "%d-%m-%Y") as date,sum(total) as total' );
+        $query = MH_Query::init( null, 'affpro_traffics' )->select( 'DATE_FORMAT(date, "%d-%m-%Y") as date,sum(total) as total' );
         unset( $filters['level'] );
         $query = self::buildQuery( $query, $filters );
 

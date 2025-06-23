@@ -3,7 +3,7 @@
 class AFF_History
     {
 
-    static $table = 'vuacode_history';
+    static $table = 'affpro_history';
 
     //Type 0: Down, 1: Up
     // $data = [

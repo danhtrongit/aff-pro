@@ -390,7 +390,7 @@
         data: function() {
             return {
                 configs: {},
-                page_title: 'VuaCode AFF',
+                page_title: 'AffPro AFF',
                 settings: {
 
                 },

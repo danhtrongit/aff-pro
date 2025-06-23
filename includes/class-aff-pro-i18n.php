@@ -6,11 +6,11 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       https://vuacode.io
+ * @link       https://affpro.dev
  * @since      1.0.0
  *
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/includes
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/includes
- * @author     VuaCode
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/includes
+ * @author     AffPro
  */
-class WP_VuaCode_AFF_i18n
+class AFF_Pro_i18n
 	{
 
 
@@ -37,7 +37,7 @@ class WP_VuaCode_AFF_i18n
 		{
 
 		load_plugin_textdomain(
-			'vuacode-aff',
+			'aff-pro',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

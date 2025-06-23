@@ -71,7 +71,7 @@ class PageTemplater_MH
 
 		// Add your templates to this array.
 		$this->templates = array(
-			'vuacode-aff-public-display.php' => 'Trang cộng tác viên'
+			'aff-pro-public-display.php' => 'Trang cộng tác viên'
 		);
 
 		}

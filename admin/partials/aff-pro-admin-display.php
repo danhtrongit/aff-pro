@@ -5,14 +5,14 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://vuacode.io/
+ * @link       https://affpro.dev/
  * @since      1.0.0 
  *
  * @package    Wordpress_Review_Mh
  * @subpackage Wordpress_Review_Mh/admin/partials
  */
 ?>
-<div class="wrap-vuacode">
+<div class="wrap-affpro">
     <!-- This file should primarily consist of HTML with a little bit of PHP. -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet"
         type="text/css">
@@ -99,7 +99,7 @@
                     <!-- <q-tab @click="openURL('https://docs.google.com/document/d/1zdvGp-tBRtI0GAFxAW7kTKubAdyLScdRn_9cWAaa--8/edit')" exact label="Hướng dẫn"></q-tab> -->
                 </q-tabs>
 
-                <q-btn flat round dense icon="whatshot" @click="openURL('https://vuacode.io')"></q-btn>
+                <q-btn flat round dense icon="whatshot" @click="openURL('https://affpro.dev')"></q-btn>
             </q-toolbar>
 
 
@@ -118,29 +118,29 @@
         Example kicking off the UI. Obviously, adapt this to your specific needs.
         Assumes you have a <div id="q-app"></div> in your <body> above
        */
-    import setAddtionalSettings from '<?php echo AFF_URL ?>/admin/partials/pages/setting/additional-settings.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import setRelationshipPage from '<?php echo AFF_URL ?>/admin/partials/pages/set-relationship.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
+    import setAddtionalSettings from '<?php echo AFF_URL ?>/admin/partials/pages/setting/additional-settings.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import setRelationshipPage from '<?php echo AFF_URL ?>/admin/partials/pages/set-relationship.js?ver=<?php echo AFF_Pro_VERSION ?>';
 
-    import settingsPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/settings.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import userLevelSettingPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/user-level.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import userRelationshipSettingPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/user-relationship.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import notificationSettingPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/notification.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import bannerSettingPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/banner.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import indexPage from '<?php echo AFF_URL ?>/admin/partials/pages/dashboard.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import productCommissionPage from '<?php echo AFF_URL ?>/admin/partials/pages/commission/product.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import categoryCommissionPage from '<?php echo AFF_URL ?>/admin/partials/pages/commission/category.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import tagCommissionPage from '<?php echo AFF_URL ?>/admin/partials/pages/commission/tag.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import userPage from '<?php echo AFF_URL ?>/admin/partials/pages/user.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import historyPage from '<?php echo AFF_URL ?>/admin/partials/pages/history.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import historyIncomePage from '<?php echo AFF_URL ?>/admin/partials/pages/history-income.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import historyCommissionPage from '<?php echo AFF_URL ?>/admin/partials/pages/history-commission.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import paymentPage from '<?php echo AFF_URL ?>/admin/partials/pages/payment.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import registerPage from '<?php echo AFF_URL ?>/admin/partials/pages/register.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import emptyComponent from '<?php echo AFF_URL ?>/admin/partials/components/data-empty.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import loading from '<?php echo AFF_URL ?>/admin/partials/components/loading.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
+    import settingsPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/settings.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import userLevelSettingPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/user-level.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import userRelationshipSettingPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/user-relationship.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import notificationSettingPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/notification.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import bannerSettingPage from '<?php echo AFF_URL ?>/admin/partials/pages/setting/banner.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import indexPage from '<?php echo AFF_URL ?>/admin/partials/pages/dashboard.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import productCommissionPage from '<?php echo AFF_URL ?>/admin/partials/pages/commission/product.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import categoryCommissionPage from '<?php echo AFF_URL ?>/admin/partials/pages/commission/category.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import tagCommissionPage from '<?php echo AFF_URL ?>/admin/partials/pages/commission/tag.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import userPage from '<?php echo AFF_URL ?>/admin/partials/pages/user.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import historyPage from '<?php echo AFF_URL ?>/admin/partials/pages/history.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import historyIncomePage from '<?php echo AFF_URL ?>/admin/partials/pages/history-income.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import historyCommissionPage from '<?php echo AFF_URL ?>/admin/partials/pages/history-commission.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import paymentPage from '<?php echo AFF_URL ?>/admin/partials/pages/payment.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import registerPage from '<?php echo AFF_URL ?>/admin/partials/pages/register.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import emptyComponent from '<?php echo AFF_URL ?>/admin/partials/components/data-empty.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import loading from '<?php echo AFF_URL ?>/admin/partials/components/loading.js?ver=<?php echo AFF_Pro_VERSION ?>';
     import {
         getConfigs
-    } from "<?php echo AFF_URL ?>/admin/partials/api/config.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>";
+    } from "<?php echo AFF_URL ?>/admin/partials/api/config.js?ver=<?php echo AFF_Pro_VERSION ?>";
 
     // import VueEasyLightbox from 'https://unpkg.com/vue-easy-lightbox@next/dist/vue-easy-lightbox.esm.min.js';
     let router = null
@@ -366,7 +366,7 @@
         el: '#q-app',
         data: function() {
             return {
-                page_title: 'VuaCode AFF',
+                page_title: 'AffPro AFF',
                 lightbox: {
                     toggler: false,
                     sources: [],
@@ -400,7 +400,7 @@
     const setViewPort = () => {
 
         const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-        document.querySelector(".wrap-vuacode").style.minHeight = `${vh - 120}px`;
+        document.querySelector(".wrap-affpro").style.minHeight = `${vh - 120}px`;
     }
     window.onresize = () => {
         setViewPort();
@@ -413,7 +413,7 @@
         const href = el.getAttribute("href");
         el.href = window.RV_CONFIGS.site_url + '/wp-admin/' + href;
     })
-    document.title = 'VuaCode AFF'
+    document.title = 'AffPro AFF'
 
     document.querySelector('body').classList.add("wp-review-q-app");
     </script>

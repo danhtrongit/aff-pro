@@ -3,11 +3,11 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://vuacode.io
+ * @link       https://affpro.dev
  * @since      1.0.0
  *
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/public
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/public
- * @author     VuaCode
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/public
+ * @author     AffPro
  */
-class WP_VuaCode_AFF_Public
+class AFF_Pro_Public
 	{
 
 	/**
@@ -132,7 +132,7 @@ class WP_VuaCode_AFF_Public
 			$users = MH_Query::init( null, 'users' )->get();
 			foreach ( $users as $key => $u ) {
 				if ( $u['parent_id'] == 0 ) {
-					$r = MH_Query::init( null, 'vuacode_user_relationships' )->where( 'distance', 1 )->where( 'descendant_id', $u['ID'] )->first();
+					$r = MH_Query::init( null, 'affpro_user_relationships' )->where( 'distance', 1 )->where( 'descendant_id', $u['ID'] )->first();
 					if ( $r )
 						MH_Query::init( null, 'users' )->where( 'ID', $r['descendant_id'] )->update( [ 'parent_id' => $r['ancestor_id'] ] );
 
@@ -263,22 +263,22 @@ class WP_VuaCode_AFF_Public
 
 	public function aff_user_dashboard()
 		{
-		// return MH_Load_view('vuacode-aff-public-display.php');
-		include_once AFF_PATH . 'public/partials/vuacode-aff-public-display.php';
-		include_once AFF_PATH . 'public/partials/vuacode-aff-public-display_ver2.php';
+		// return MH_Load_view('aff-pro-public-display.php');
+		include_once AFF_PATH . 'public/partials/aff-pro-public-display.php';
+		include_once AFF_PATH . 'public/partials/aff-pro-public-display_ver2.php';
 
 		}
 	public function aff_user_dashboard_ver2()
 		{
-		include_once AFF_PATH . 'public/partials/vuacode-aff-public-display_ver2.php';
+		include_once AFF_PATH . 'public/partials/aff-pro-public-display_ver2.php';
 		}
 
 	public function user_register($user_id)
 		{
 
-		$check_user_relationship = MH_Query::init( null, 'vuacode_user_relationships' )->where( 'ancestor_id', $user_id )->where( 'descendant_id', $user_id )->first();
+		$check_user_relationship = MH_Query::init( null, 'affpro_user_relationships' )->where( 'ancestor_id', $user_id )->where( 'descendant_id', $user_id )->first();
 		if ( !$check_user_relationship ) {
-			MH_Query::init( null, 'vuacode_user_relationships' )->insert( [
+			MH_Query::init( null, 'affpro_user_relationships' )->insert( [
 				'ancestor_id'   => $user_id,
 				'descendant_id' => $user_id,
 				'distance'      => 0,
@@ -468,15 +468,15 @@ class WP_VuaCode_AFF_Public
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in WP_VuaCode_AFF_Loader as all of the hooks are defined
+		 * defined in AFF_Pro_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The WP_VuaCode_AFF_Loader will then create the relationship
+		 * The AFF_Pro_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/vuacode-aff-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/aff-pro-public.css', array(), $this->version, 'all' );
 
 		}
 
@@ -492,16 +492,16 @@ class WP_VuaCode_AFF_Public
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in WP_VuaCode_AFF_Loader as all of the hooks are defined
+		 * defined in AFF_Pro_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The WP_VuaCode_AFF_Loader will then create the relationship
+		 * The AFF_Pro_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
 		wp_enqueue_script( $this->plugin_name . '-sweet-alert', AFF_URL . '/admin/js/sweetalert2@10.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vuacode-aff-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/aff-pro-public.js', array( 'jquery' ), $this->version, false );
 
 		}
 

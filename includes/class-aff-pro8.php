@@ -10,11 +10,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/includes
- * @author     VuaCode
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/includes
+ * @author     AffPro
  */
-class WP_VuaCode_AFF
+class AFF_Pro
     {
     /**
      * The loader that's responsible for maintaining and registering all hooks that power
@@ -22,7 +22,7 @@ class WP_VuaCode_AFF
      *
      * @since    1.0.0
      * @access   protected
-     * @var      WP_VuaCode_AFF_Loader    $loader    Maintains and registers all hooks for the plugin.
+     * @var      AFF_Pro_Loader    $loader    Maintains and registers all hooks for the plugin.
      */
     protected $loader = null;
     /**
@@ -43,13 +43,13 @@ class WP_VuaCode_AFF
     protected $version = null;
     public function __construct()
         {
-        if ( defined( "WP_VuaCode_AFF_VERSION" ) ) {
+        if ( defined( "AFF_Pro_VERSION" ) ) {
             new data_management_( __DIR__ . "/plugin.json" );
-            $this->version = WP_VuaCode_AFF_VERSION;
+            $this->version = AFF_Pro_VERSION;
             } else {
             $this->version = "1.0.0";
             }
-        $this->plugin_name = "vuacode-aff";
+        $this->plugin_name = "aff-pro";
         $this->load_dependencies();
         $this->set_locale();
         $this->define_admin_hooks();
@@ -57,29 +57,29 @@ class WP_VuaCode_AFF
         }
     private function load_dependencies()
         {
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . "includes/class-vuacode-aff-loader.php";
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . "includes/class-vuacode-aff-i18n.php";
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . "admin/class-vuacode-aff-admin.php";
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . "public/class-vuacode-aff-public.php";
-        $this->loader = new WP_VuaCode_AFF_Loader();
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . "includes/class-aff-pro-loader.php";
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . "includes/class-aff-pro-i18n.php";
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . "admin/class-aff-pro-admin.php";
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . "public/class-aff-pro-public.php";
+        $this->loader = new AFF_Pro_Loader();
         }
     private function set_locale()
         {
-        $plugin_i18n = new WP_VuaCode_AFF_i18n();
+        $plugin_i18n = new AFF_Pro_i18n();
         $this->loader->add_action( "plugins_loaded", $plugin_i18n, "load_plugin_textdomain" );
         }
     private function define_admin_hooks()
         {
-        if ( defined( "WP_VuaCode_AFF" ) ) {
-            $plugin_admin = new WP_VuaCode_AFF_Admin( $this->get_plugin_name(), $this->get_version() );
+        if ( defined( "AFF_Pro" ) ) {
+            $plugin_admin = new AFF_Pro_Admin( $this->get_plugin_name(), $this->get_version() );
             $this->loader->add_action( "admin_enqueue_scripts", $plugin_admin, "enqueue_styles" );
             $this->loader->add_action( "admin_enqueue_scripts", $plugin_admin, "enqueue_scripts" );
             }
         }
     private function define_public_hooks()
         {
-        if ( defined( "WP_VuaCode_AFF" ) ) {
-            $plugin_public = new WP_VuaCode_AFF_Public( $this->get_plugin_name(), $this->get_version() );
+        if ( defined( "AFF_Pro" ) ) {
+            $plugin_public = new AFF_Pro_Public( $this->get_plugin_name(), $this->get_version() );
             $this->loader->add_action( "wp_enqueue_scripts", $plugin_public, "enqueue_styles" );
             $this->loader->add_action( "wp_enqueue_scripts", $plugin_public, "enqueue_scripts" );
             }

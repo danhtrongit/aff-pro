@@ -3,11 +3,11 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://vuacode.io
+ * @link       https://affpro.dev
  * @since      1.0.0
  *
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/admin
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/admin
- * @author     VuaCode
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/admin
+ * @author     AffPro
  */
-class WP_VuaCode_AFF_Admin
+class AFF_Pro_Admin
 	{
 
 	/**
@@ -103,7 +103,7 @@ class WP_VuaCode_AFF_Admin
 	public function custom_orders_list_column_content($column, $post_id)
 		{
 		if ( $column == 'aff_column' ) {
-			$ref_id = MH_Query::init( null, 'vuacode_user_order' )->where( 'order_id', $post_id )->first();
+			$ref_id = MH_Query::init( null, 'affpro_user_order' )->where( 'order_id', $post_id )->first();
 			if ( $ref_id )
 				$this->showAffIcon();
 			}
@@ -111,7 +111,7 @@ class WP_VuaCode_AFF_Admin
 	public function custom_orders_list_column_content_hpos($column, $order)
 		{
 		if ( $column == 'aff_column' ) {
-			$ref_id = MH_Query::init( null, 'vuacode_user_order' )->where( 'order_id', $order->get_id() )->first();
+			$ref_id = MH_Query::init( null, 'affpro_user_order' )->where( 'order_id', $order->get_id() )->first();
 			if ( $ref_id )
 				$this->showAffIcon();
 			}
@@ -187,7 +187,7 @@ class WP_VuaCode_AFF_Admin
 	public function custom_order_option_cb_assign_user($post)
 		{
 
-		$user_order = MH_Query::init( null, 'vuacode_user_order' )->where( 'order_id', $post->ID )->where( 'level', 0 )->first();
+		$user_order = MH_Query::init( null, 'affpro_user_order' )->where( 'order_id', $post->ID )->where( 'level', 0 )->first();
 		if ( get_post_status( $post ) == 'wc-completed' && !$user_order ) {
 			echo 'Vui lòng chuyển trạng thái đơn hàng về Đang xử lý nếu bạn muốn gán đơn cho CTV nào';
 			} else if ( !$user_order ) {
@@ -251,7 +251,7 @@ class WP_VuaCode_AFF_Admin
 
 	public function custom_order_option_cb($post)
 		{
-		$user_order = MH_Query::init( null, 'vuacode_user_order' )->where( 'order_id', $post->ID )->where( 'status', 0 )->get();
+		$user_order = MH_Query::init( null, 'affpro_user_order' )->where( 'order_id', $post->ID )->where( 'status', 0 )->get();
 		if ( $user_order ) {
 			?>
 																								<div>Tính toán lại hoa hồng cho đơn hàng</div><div>
@@ -297,20 +297,20 @@ class WP_VuaCode_AFF_Admin
 		$u_role = $user->roles[0];
 		if ( $u_role == 'administrator' ) {
 			add_menu_page(
-				__( 'VuaCode AFF', 'textdomain' ),
-				'VuaCode AFF',
+				__( 'AffPro AFF', 'textdomain' ),
+				'AffPro AFF',
 				'manage_options',
-				'vuacode-aff',
+				'aff-pro',
 				[ $this, 'admin_template' ],
 				$icon,
 				110
 			);
 			} elseif ( $u_role == 'shop_manager' )
 			add_menu_page(
-				__( 'VuaCode AFF', 'textdomain' ),
-				'VuaCode AFF',
+				__( 'AffPro AFF', 'textdomain' ),
+				'AffPro AFF',
 				'shop_manager',
-				'vuacode-aff',
+				'aff-pro',
 				[ $this, 'admin_template' ],
 				$icon,
 				110
@@ -336,15 +336,15 @@ class WP_VuaCode_AFF_Admin
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in WP_VuaCode_AFF_Loader as all of the hooks are defined
+		 * defined in AFF_Pro_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The WP_VuaCode_AFF_Loader will then create the relationship
+		 * The AFF_Pro_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/vuacode-aff-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/aff-pro-admin.css', array(), $this->version, 'all' );
 
 		}
 
@@ -360,15 +360,15 @@ class WP_VuaCode_AFF_Admin
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in WP_VuaCode_AFF_Loader as all of the hooks are defined
+		 * defined in AFF_Pro_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The WP_VuaCode_AFF_Loader will then create the relationship
+		 * The AFF_Pro_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vuacode-aff-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/aff-pro-admin.js', array( 'jquery' ), $this->version, false );
 
 		}
 

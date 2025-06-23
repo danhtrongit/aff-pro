@@ -3,7 +3,7 @@
 class AFF_Coupon
 	{
 
-	static $table = 'vuacode_coupons';
+	static $table = 'affpro_coupons';
 
 
 

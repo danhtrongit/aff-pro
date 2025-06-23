@@ -3,7 +3,7 @@
 class AFF_Banner extends AFF_App
     {
 
-    static $table = 'vuacode_banners';
+    static $table = 'affpro_banners';
 
     static function get()
         {

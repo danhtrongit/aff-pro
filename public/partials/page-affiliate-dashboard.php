@@ -9,7 +9,7 @@
  *
  * Template name: Affiliate User Dashboard
  *
- * @package vuacode-aff
+ * @package aff-pro
  */
 
 // the_content();

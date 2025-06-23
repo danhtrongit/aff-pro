@@ -3,7 +3,7 @@
 class AFF_Traffic extends AFF_App
     {
 
-    static $table = 'vuacode_traffics';
+    static $table = 'affpro_traffics';
 
 
     static function setView($userId, $url, $date)

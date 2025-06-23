@@ -3,7 +3,7 @@
 class AFF_Commission_Settings
     {
 
-    static $table = 'vuacode_commission_settings';
+    static $table = 'affpro_commission_settings';
 
     static function get($type = 'product')
         {

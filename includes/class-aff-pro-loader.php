@@ -3,11 +3,11 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       https://vuacode.io
+ * @link       https://affpro.dev
  * @since      1.0.0
  *
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/includes
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    WP_VuaCode_AFF
- * @subpackage WP_VuaCode_AFF/includes
- * @author     VuaCode
+ * @package    AFF_Pro
+ * @subpackage AFF_Pro/includes
+ * @author     AffPro
  */
-class WP_VuaCode_AFF_Loader
+class AFF_Pro_Loader
 	{
 
 	/**

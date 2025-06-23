@@ -151,19 +151,19 @@ class AFF_Ajax_Admin
 		$this->checkPermissionAdmin();
 		global $wpdb;
 		$tables = [
-			'vuacode_user_order',
-			'vuacode_traffics',
-			'vuacode_payments',
-			'vuacode_history',
-			'vuacode_coupons',
-			'vuacode_commission_settings',
+			'affpro_user_order',
+			'affpro_traffics',
+			'affpro_payments',
+			'affpro_history',
+			'affpro_coupons',
+			'affpro_commission_settings',
 		];
 
 		foreach ( $tables as $key => $table ) {
 			MH_Query::init( null, $table )->delete();
 			}
 		$wpdb->query( "UPDATE {$wpdb->prefix}users SET balance = 0, income = 0, level = 0" );
-		$wpdb->query( "UPDATE {$wpdb->prefix}vuacode_user_relationships SET ancestor_level = 0" );
+		$wpdb->query( "UPDATE {$wpdb->prefix}affpro_user_relationships SET ancestor_level = 0" );
 		MH_Response( true, 'Đã xóa toàn bộ dữ liệu', [] );
 
 		}
@@ -262,7 +262,7 @@ class AFF_Ajax_Admin
 		$this->checkPermissionAdmin();
 		$user       = isset($_POST['user']) ? sanitize_text_field( $_POST['user'] ) : 0;
 		$id         = isset($_POST['id']) ? sanitize_text_field( $_POST['id'] ) : 0;
-		$user_order = MH_Query::init( null, 'vuacode_user_order' )->where( 'order_id', $id )->first();
+		$user_order = MH_Query::init( null, 'affpro_user_order' )->where( 'order_id', $id )->first();
 		if ( $user_order )
 			MH_Response( false, 'Có lỗi xảy ra' );
 
@@ -285,13 +285,13 @@ class AFF_Ajax_Admin
 		if ( $order_id )
 			$id = $order_id;
 		if ( $id ) {
-			$user_order = MH_Query::init( null, 'vuacode_user_order' )->where( 'order_id', $id )->where( 'status', 0 )->where( 'level', 0 )->first();
+			$user_order = MH_Query::init( null, 'affpro_user_order' )->where( 'order_id', $id )->where( 'status', 0 )->where( 'level', 0 )->first();
 			if ( !$user_order )
 				MH_Response( false, 'Không tìm thấy dữ liệu', [] );
 
 			$user  = get_user_by( 'login', $user_order['user_ref'] );
 			$order = wc_get_order( $id );
-			MH_Query::init( null, 'vuacode_user_order' )->where( 'order_id', $id )->delete();
+			MH_Query::init( null, 'affpro_user_order' )->where( 'order_id', $id )->delete();
 			AFF_User_Order::create( $user, $order, $user_order['ref_path'], $user_order['ref_product'], NULL );
 			MH_Response( true, 'Cập nhật thành công', [] );
 

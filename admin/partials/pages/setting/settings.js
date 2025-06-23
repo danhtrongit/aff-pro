@@ -163,7 +163,7 @@ export default {
         .dialog({
           dark: true,
           title: "Xóa toàn bộ dữ liệu",
-          message: "Dữ liệu của Plugin sẽ bị xóa. Gõ vuacode-aff để tiếp tục chú ý toàn bộ số dư và doanh thu của cộng tác viên cũng sẽ bị xóa theo",
+          message: "Dữ liệu của Plugin sẽ bị xóa. Gõ aff-pro để tiếp tục chú ý toàn bộ số dư và doanh thu của cộng tác viên cũng sẽ bị xóa theo",
           prompt: {
             model: "",
             type: "text", // optional
@@ -172,7 +172,7 @@ export default {
           persistent: true,
         })
         .onOk((data) => {
-          if (data == "vuacode-aff") {
+          if (data == "aff-pro") {
             axios
               .post(
                 RV_CONFIGS.ajax_url,

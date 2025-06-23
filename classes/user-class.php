@@ -66,7 +66,7 @@ class AFF_User extends AFF_App
         {
         $settings           = self::getSettings();
         $relationship_level = $settings['relationship_level'];
-        $query              = MH_Query::init( null, self::$table . " as t1" )->innerJoin( 'vuacode_user_relationships as t2', 't1.ID', '=', 't2.descendant_id' );
+        $query              = MH_Query::init( null, self::$table . " as t1" )->innerJoin( 'affpro_user_relationships as t2', 't1.ID', '=', 't2.descendant_id' );
         $query              = $query->where( 't2.ancestor_id', $filters['user_id'] )->where( 't2.distance', '>', 0 )->where( 't2.distance', '<=', $relationship_level );
 
         if ( isset($filters['search']) && $filters['search'] ) {
@@ -90,7 +90,7 @@ class AFF_User extends AFF_App
         {
         $settings           = self::getSettings();
         $relationship_level = $settings['relationship_level'];
-        $query              = MH_Query::init( null, self::$table . " as t1" )->select( 't1.user_login as label, t1.parent_id, t1.ID, t1.user_login, t2.distance' )->innerJoin( 'vuacode_user_relationships as t2', 't1.ID', '=', 't2.descendant_id' );
+        $query              = MH_Query::init( null, self::$table . " as t1" )->select( 't1.user_login as label, t1.parent_id, t1.ID, t1.user_login, t2.distance' )->innerJoin( 'affpro_user_relationships as t2', 't1.ID', '=', 't2.descendant_id' );
         // $query = $query->where('t2.ancestor_id', $filters['user_id'])->where('t2.distance', '>', 0)->where('t2.distance', '<=', $relationship_level);
         $query = $query->where( 't2.ancestor_id', $filters['user_id'] )->where( 't2.distance', '<=', $relationship_level );
         $query = $query->order_by( 't2.distance' );

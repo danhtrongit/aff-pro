@@ -3,7 +3,7 @@
 class AFF_Payment extends AFF_App
     {
 
-    static $table = 'vuacode_payments';
+    static $table = 'affpro_payments';
 
 
     static function create($user_id, $data)

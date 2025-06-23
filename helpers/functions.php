@@ -351,7 +351,7 @@ if ( !function_exists( 'check_base64_image' ) ) {
 
 if ( !function_exists( 'MH_Save_Image' ) ) {
 
-    function MH_Save_Image($base64, $filename = '', $folder = 'vuacode-aff')
+    function MH_Save_Image($base64, $filename = '', $folder = 'aff-pro')
         {
 
         $pos       = strpos( $base64, ';' );
@@ -451,7 +451,7 @@ if ( !function_exists( 'MH_Save_Image_To_Media' ) ) {
 
 if ( !function_exists( 'MH_Save_Image_1' ) ) {
 
-    function MH_Save_Image_1($base64, $filename = '', $folder = 'vuacode-aff')
+    function MH_Save_Image_1($base64, $filename = '', $folder = 'aff-pro')
         {
 
         $pos       = strpos( $base64, ';' );

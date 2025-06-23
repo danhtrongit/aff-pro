@@ -204,29 +204,29 @@
     Example kicking off the UI. Obviously, adapt this to your specific needs.
     Assumes you have a <div id="q-app"></div> in your <body> above
     */
-    import indexPage from '<?php echo AFF_URL ?>/public/partials/pages/dashboard.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import collaboratorPage from '<?php echo AFF_URL ?>/public/partials/pages/dashboard-2.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import historyPage from '<?php echo AFF_URL ?>/public/partials/pages/history.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import paymentPage from '<?php echo AFF_URL ?>/public/partials/pages/payment.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import userPage from '<?php echo AFF_URL ?>/public/partials/pages/user.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import toolPage from '<?php echo AFF_URL ?>/public/partials/pages/tool.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import loginPage from '<?php echo AFF_URL ?>/public/partials/pages/login.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import registerPage from '<?php echo AFF_URL ?>/public/partials/pages/register.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import profilePage from '<?php echo AFF_URL ?>/public/partials/pages/user-profile.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import bannerPage from '<?php echo AFF_URL ?>/public/partials/pages/banner.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
+    import indexPage from '<?php echo AFF_URL ?>/public/partials/pages/dashboard.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import collaboratorPage from '<?php echo AFF_URL ?>/public/partials/pages/dashboard-2.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import historyPage from '<?php echo AFF_URL ?>/public/partials/pages/history.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import paymentPage from '<?php echo AFF_URL ?>/public/partials/pages/payment.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import userPage from '<?php echo AFF_URL ?>/public/partials/pages/user.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import toolPage from '<?php echo AFF_URL ?>/public/partials/pages/tool.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import loginPage from '<?php echo AFF_URL ?>/public/partials/pages/login.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import registerPage from '<?php echo AFF_URL ?>/public/partials/pages/register.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import profilePage from '<?php echo AFF_URL ?>/public/partials/pages/user-profile.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import bannerPage from '<?php echo AFF_URL ?>/public/partials/pages/banner.js?ver=<?php echo AFF_Pro_VERSION ?>';
 
-    import emptyComponent from '<?php echo AFF_URL ?>/admin/partials/components/data-empty.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
-    import loading from '<?php echo AFF_URL ?>/admin/partials/components/loading.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>';
+    import emptyComponent from '<?php echo AFF_URL ?>/admin/partials/components/data-empty.js?ver=<?php echo AFF_Pro_VERSION ?>';
+    import loading from '<?php echo AFF_URL ?>/admin/partials/components/loading.js?ver=<?php echo AFF_Pro_VERSION ?>';
     import {
         getConfigs
-    } from "<?php echo AFF_URL ?>/admin/partials/api/config.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>";
+    } from "<?php echo AFF_URL ?>/admin/partials/api/config.js?ver=<?php echo AFF_Pro_VERSION ?>";
     import {
         getUserProfile,
         logout
-    } from "<?php echo AFF_URL ?>/public/partials/api/user.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>";
+    } from "<?php echo AFF_URL ?>/public/partials/api/user.js?ver=<?php echo AFF_Pro_VERSION ?>";
     import {
         route
-    } from "<?php echo AFF_URL ?>/public/partials/constants/constants.js?ver=<?php echo WP_VuaCode_AFF_VERSION ?>";
+    } from "<?php echo AFF_URL ?>/public/partials/constants/constants.js?ver=<?php echo AFF_Pro_VERSION ?>";
     // import VueEasyLightbox from 'https://unpkg.com/vue-easy-lightbox@next/dist/vue-easy-lightbox.esm.min.js';
     const EventBus = new Vue()
     let router = null
@@ -436,7 +436,7 @@
         data: function() {
             return {
                 configs: {},
-                page_title: 'VuaCode AFF',
+                page_title: 'AffPro AFF',
                 settings: {
 
                 },

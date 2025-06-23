@@ -3,7 +3,7 @@
 class AFF_User_Relationship
     {
 
-    static $table = 'vuacode_user_relationships';
+    static $table = 'affpro_user_relationships';
 
 
     static function initRelationShip()

@@ -897,7 +897,7 @@ if ( !class_exists( 'MH_Query' ) ) {
 					}, $results );
 				}
 
-			if ( defined( 'WP_VuaCode_AFF' ) )
+			if ( defined( 'AFF_Pro' ) )
 				return $results;
 
 			}

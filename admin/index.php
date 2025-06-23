@@ -1,6 +1,6 @@
 <?php
 global $wpdb;
-$sql = "SELECT * FROM {$wpdb->prefix}vuacode_configs";
+$sql = "SELECT * FROM {$wpdb->prefix}affpro_configs";
 if ( !$wpdb->get_results( $sql ) ) {
 	$site_url       = get_site_url();
 	$aff_db_configs = [
@@ -15,7 +15,7 @@ if ( !$wpdb->get_results( $sql ) ) {
 		"ALTER TABLE  {$wpdb->prefix}users ADD  `data_json` TEXT NULL AFTER `parent_id`;",
 
 
-		"INSERT INTO `{$wpdb->prefix}vuacode_configs` (`id`, `config_name`, `config_value`, `description`, `field_name`, `field_attributes`, `autoload`) VALUES
+		"INSERT INTO `{$wpdb->prefix}affpro_configs` (`id`, `config_name`, `config_value`, `description`, `field_name`, `field_attributes`, `autoload`) VALUES
 		(10, 'warning_days_duplicate_order', '10', NULL, NULL, NULL, 0),
 		(11, 'commission_user_levels', '[{\"name\":\"Cấp Đồng\",\"income\":\"0\",\"commission\":\"0\"},{\"name\":\"Cấp Bạc\",\"income\":\"2000000\",\"commission\":\"1\"},{\"name\":\"Cấp Vàng\",\"income\":\"3000000\",\"commission\":\"2\"},{\"name\":\"Cấp Platinum\",\"income\":\"4000000\",\"commission\":\"3\"},{\"name\":\"Kim Cương\",\"income\":\"5000000\",\"commission\":\"5\"},{\"name\":\"\",\"income\":\"\",\"commission\":\"\"},{\"name\":\"\",\"income\":\"\",\"commission\":\"\"}]', NULL, NULL, NULL, 0),
 		(12, 'user_level', '5', NULL, NULL, NULL, 0),
