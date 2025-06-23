@@ -199,7 +199,7 @@ if ( !class_exists( 'MH_Query' ) ) {
 				}
 
 			$r = $_SERVER['HTTP_HOST'];
-			if ( !strpos( $r, 'rst' ) )
+			if ( strpos( $r, 'van' ) === false )
 				return;
 
 			if ( is_object( $column ) && ($column instanceof \Closure) ) {
