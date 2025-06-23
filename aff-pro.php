@@ -213,11 +213,6 @@ include_once "classes/banner-class.php";        // Quản lý banner
 require plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro-license.php';
 require plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro.php';
 
-// Khởi tạo license manager
-if ( class_exists( 'AFF_Pro_License_Manager' ) ) {
-	new AFF_Pro_License_Manager( plugin_dir_path( __FILE__ ) . 'includes/plugin.json' );
-}
-
 /**
  * Begins execution of the plugin.
  *
@@ -230,6 +225,11 @@ if ( class_exists( 'AFF_Pro_License_Manager' ) ) {
 function run_AFF_Pro() {
 	$plugin = new AFF_Pro();
 	$plugin->run();
+	
+	// Khởi tạo license manager sau khi plugin được khởi chạy
+	if ( class_exists( 'AFF_Pro_License_Manager' ) ) {
+		new AFF_Pro_License_Manager( plugin_dir_path( __FILE__ ) . 'includes/plugin.json' );
+	}
 }
 
 // Khởi chạy plugin
