@@ -99,26 +99,88 @@ if ( ! function_exists( 'debug' ) ) {
 }
 
 /**
- * Mã được thực thi khi kích hoạt plugin
- * Chi tiết được ghi trong includes/class-aff-pro-activator.php
+ * Kiểm tra yêu cầu hệ thống trước khi kích hoạt
+ * 
+ * @since 1.0.0
+ * @return bool|WP_Error
  */
-function activate_AFF_Pro() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro-activator.php';
+function aff_pro_check_requirements() {
+	$errors = array();
+
+	// Kiểm tra phiên bản PHP
+	if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
+		$errors[] = sprintf(
+			__( 'AFF Pro requires PHP version 7.4 or higher. You are running version %s.', 'aff-pro' ),
+			PHP_VERSION
+		);
+	}
+
+	// Kiểm tra phiên bản WordPress
+	if ( version_compare( get_bloginfo( 'version' ), '5.0', '<' ) ) {
+		$errors[] = sprintf(
+			__( 'AFF Pro requires WordPress version 5.0 or higher. You are running version %s.', 'aff-pro' ),
+			get_bloginfo( 'version' )
+		);
+	}
+
+	// Kiểm tra WooCommerce
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		$errors[] = __( 'AFF Pro requires WooCommerce to be installed and activated.', 'aff-pro' );
+	} elseif ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '5.0', '<' ) ) {
+		$errors[] = sprintf(
+			__( 'AFF Pro requires WooCommerce version 5.0 or higher. You are running version %s.', 'aff-pro' ),
+			WC_VERSION
+		);
+	}
+
+	if ( ! empty( $errors ) ) {
+		return new WP_Error( 'requirements_not_met', implode( '<br>', $errors ) );
+	}
+
+	return true;
+}
+
+/**
+ * Mã được thực thi khi kích hoạt plugin
+ * 
+ * @since 1.0.0
+ */
+function activate_aff_pro() {
+	// Kiểm tra yêu cầu hệ thống
+	$requirements_check = aff_pro_check_requirements();
+	if ( is_wp_error( $requirements_check ) ) {
+		wp_die(
+			$requirements_check->get_error_message(),
+			__( 'Plugin Activation Error', 'aff-pro' ),
+			array( 'back_link' => true )
+		);
+	}
+
+	// Load activator class
+	require_once AFF_PRO_PATH . 'includes/class-aff-pro-activator.php';
 	AFF_Pro_Activator::activate();
+
+	// Flush rewrite rules
+	flush_rewrite_rules();
 }
 
 /**
  * Mã được thực thi khi vô hiệu hóa plugin
- * Chi tiết được ghi trong includes/class-aff-pro-deactivator.php
+ * 
+ * @since 1.0.0
  */
-function deactivate_AFF_Pro() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro-deactivator.php';
+function deactivate_aff_pro() {
+	// Load deactivator class
+	require_once AFF_PRO_PATH . 'includes/class-aff-pro-deactivator.php';
 	AFF_Pro_Deactivator::deactivate();
+
+	// Flush rewrite rules
+	flush_rewrite_rules();
 }
 
 // Đăng ký các hook kích hoạt và vô hiệu hóa
-register_activation_hook( __FILE__, 'activate_AFF_Pro' );
-register_deactivation_hook( __FILE__, 'deactivate_AFF_Pro' );
+register_activation_hook( __FILE__, 'activate_aff_pro' );
+register_deactivation_hook( __FILE__, 'deactivate_aff_pro' );
 
 /**
  * Tải các file cần thiết cho plugin
