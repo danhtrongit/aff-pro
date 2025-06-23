@@ -230,10 +230,31 @@ function run_AFF_Pro() {
 // Khởi tạo license manager trong hook init để đảm bảo WordPress đã load đầy đủ
 function init_aff_pro_license() {
 	if ( class_exists( 'AFF_Pro_License_Manager' ) ) {
-		new AFF_Pro_License_Manager( plugin_dir_path( __FILE__ ) . 'includes/plugin.json' );
+		try {
+			$plugin_json_path = plugin_dir_path( __FILE__ ) . 'includes/plugin.json';
+			
+			// Kiểm tra file tồn tại trước khi khởi tạo
+			if ( file_exists( $plugin_json_path ) ) {
+				new AFF_Pro_License_Manager( $plugin_json_path );
+			} else {
+				error_log( 'AFF Pro: plugin.json not found at ' . $plugin_json_path );
+			}
+		} catch ( Exception $e ) {
+			// Log error but don't break the site
+			error_log( 'AFF Pro License Manager Error: ' . $e->getMessage() );
+		} catch ( Error $e ) {
+			// Catch fatal errors too
+			error_log( 'AFF Pro License Manager Fatal Error: ' . $e->getMessage() );
+		}
 	}
 }
-add_action( 'init', 'init_aff_pro_license' );
+
+// Chỉ khởi tạo license manager trong admin area để tránh conflict
+if ( is_admin() ) {
+	add_action( 'admin_init', 'init_aff_pro_license' );
+} else {
+	add_action( 'init', 'init_aff_pro_license' );
+}
 
 // Khởi chạy plugin
 run_AFF_Pro();
