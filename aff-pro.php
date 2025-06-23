@@ -225,12 +225,15 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro.php';
 function run_AFF_Pro() {
 	$plugin = new AFF_Pro();
 	$plugin->run();
-	
-	// Khởi tạo license manager sau khi plugin được khởi chạy
+}
+
+// Khởi tạo license manager trong hook init để đảm bảo WordPress đã load đầy đủ
+function init_aff_pro_license() {
 	if ( class_exists( 'AFF_Pro_License_Manager' ) ) {
 		new AFF_Pro_License_Manager( plugin_dir_path( __FILE__ ) . 'includes/plugin.json' );
 	}
 }
+add_action( 'init', 'init_aff_pro_license' );
 
 // Khởi chạy plugin
 run_AFF_Pro();
