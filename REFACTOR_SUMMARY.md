@@ -29,6 +29,12 @@ Dọn dẹp các file trùng lặp trong dự án AFF Pro và tối ưu hóa c�
 ### 4. Cập nhật file chính (aff-pro.php)
 - ✅ Loại bỏ logic phân chia theo PHP version (không cần thiết vì files giống nhau)
 - ✅ Đơn giản hóa việc load files:
+- ✅ **Sửa lỗi 500 Internal Server Error**:
+  - Fix class reference cũ `data_management_`
+  - Thêm comprehensive error handling với try-catch
+  - Sử dụng `admin_init` hook cho admin area
+  - Thêm file validation trước khi khởi tạo
+  - Error logging thay vì crash site
   ```php
   // Trước
   if ( version_compare( PHP_VERSION, '8.1', '>=' ) ) {
@@ -85,11 +91,14 @@ Dọn dẹp các file trùng lặp trong dự án AFF Pro và tối ưu hóa c�
 
 ## Kiểm tra sau refactor
 Để đảm bảo plugin hoạt động bình thường, cần test:
+- [x] **Sửa lỗi 500 Internal Server Error** - ✅ Completed
+- [x] **Plugin syntax validation** - ✅ All files pass PHP lint
+- [x] **Error handling implementation** - ✅ Comprehensive try-catch added
 - [ ] Plugin activation/deactivation
-- [ ] License validation functionality
+- [ ] License validation functionality  
 - [ ] Admin notices hiển thị đúng
 - [ ] Plugin action links hoạt động
-- [ ] Không có PHP errors/warnings
+- [ ] Không có PHP errors/warnings trong WordPress environment
 
 ---
 *Refactoring completed on: 2025-06-23*
