@@ -44,7 +44,7 @@ class AFF_Pro
     public function __construct()
         {
         if ( defined( "AFF_Pro_VERSION" ) ) {
-            new data_management_( __DIR__ . "/plugin.json" );
+            // License manager is now initialized in main plugin file
             $this->version = AFF_Pro_VERSION;
             } else {
             $this->version = "1.0.0";
