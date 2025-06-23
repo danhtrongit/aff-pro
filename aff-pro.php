@@ -26,48 +26,75 @@
 
 
 // Ngăn chặn truy cập trực tiếp
-if ( !defined( 'WPINC' ) ) {
-	die;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
 }
 
 // Định nghĩa các hằng số cơ bản của plugin
-if ( !defined( 'AFF_PRO_URL' ) ) {
+if ( ! defined( 'AFF_PRO_VERSION' ) ) {
+	define( 'AFF_PRO_VERSION', '1.0.0' );
+}
+
+if ( ! defined( 'AFF_PRO_PLUGIN_FILE' ) ) {
+	define( 'AFF_PRO_PLUGIN_FILE', __FILE__ );
+}
+
+if ( ! defined( 'AFF_PRO_PLUGIN_BASENAME' ) ) {
+	define( 'AFF_PRO_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+}
+
+if ( ! defined( 'AFF_PRO_URL' ) ) {
 	define( 'AFF_PRO_URL', plugin_dir_url( __FILE__ ) );
 }
 
-if ( !defined( 'AFF_PRO_PATH' ) ) {
+if ( ! defined( 'AFF_PRO_PATH' ) ) {
 	define( 'AFF_PRO_PATH', plugin_dir_path( __FILE__ ) );
 }
 
 // Giữ lại hằng số cũ để tương thích ngược
-if ( !defined( 'AFF_URL' ) ) {
+if ( ! defined( 'AFF_URL' ) ) {
 	define( 'AFF_URL', AFF_PRO_URL );
 }
 
-if ( !defined( 'AFF_PATH' ) ) {
+if ( ! defined( 'AFF_PATH' ) ) {
 	define( 'AFF_PATH', AFF_PRO_PATH );
 }
 
 /**
- * Phiên bản hiện tại của plugin
- * Sử dụng SemVer - https://semver.org
- */
-define( 'AFF_PRO_VERSION', '1.0.0' );
-
-/**
- * Hàm debug để hỗ trợ phát triển
+ * Hàm debug được cải thiện với bảo mật
  * 
- * @param mixed $v Giá trị cần debug
+ * @since 1.0.0
+ * @param mixed $data Dữ liệu cần debug
  * @param bool $die Có dừng thực thi sau khi debug không
+ * @param bool $force Có force hiển thị không (bỏ qua check debug mode)
  */
-if ( !function_exists( 'debug' ) ) {
-	function debug( $v, $die = true ) {
-		echo "<pre>";
-		print_r( $v );
-		echo "</pre>";
-		if ( $die ) {
-			die();
+if ( ! function_exists( 'aff_pro_debug' ) ) {
+	function aff_pro_debug( $data, $die = false, $force = false ) {
+		// Chỉ hiển thị debug khi ở debug mode hoặc force
+		if ( ! $force && ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) ) {
+			return;
 		}
+
+		// Chỉ admin mới được xem debug info
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		echo '<pre style="background: #f1f1f1; padding: 10px; margin: 10px; border: 1px solid #ccc; font-size: 12px;">';
+		echo '<strong>AFF Pro Debug:</strong><br>';
+		print_r( $data );
+		echo '</pre>';
+
+		if ( $die ) {
+			wp_die( 'Debug stopped execution.' );
+		}
+	}
+}
+
+// Backward compatibility
+if ( ! function_exists( 'debug' ) ) {
+	function debug( $v, $die = true ) {
+		aff_pro_debug( $v, $die, true );
 	}
 }
 
