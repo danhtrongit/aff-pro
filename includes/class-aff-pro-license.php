@@ -49,26 +49,43 @@ if ( ! class_exists( 'AFF_Pro_License_Manager' ) ) {
          * @param string $plugin_file Path to plugin file
          */
         public function __construct( $plugin_file ) {
-            $plugin = file_get_contents( $plugin_file );
-            $plugin = $this->decode_( $plugin );
+            // Check if plugin file exists
+            if ( ! file_exists( $plugin_file ) ) {
+                return;
+            }
             
-            $this->cache_key = $plugin['slug'];
+            $plugin_content = file_get_contents( $plugin_file );
+            if ( false === $plugin_content ) {
+                return;
+            }
+            
+            $plugin = $this->decode_( $plugin_content );
+            if ( ! $plugin || ! is_array( $plugin ) ) {
+                return;
+            }
+            
+            $this->cache_key = isset( $plugin['slug'] ) ? $plugin['slug'] : null;
             $this->plugin = $plugin;
-            $this->license = get_option( $this->plugin['slug'] . '_license', null );
             
-            if ( $this->license ) {
-                $this->license = $this->decode_( $this->license );
+            if ( $this->cache_key ) {
+                $this->license = get_option( $this->plugin['slug'] . '_license', null );
+                
+                if ( $this->license ) {
+                    $this->license = $this->decode_( $this->license );
+                }
             }
 
-            // Register hooks
-            add_filter( 'plugins_api', array( $this, 'info' ), 20, 3 );
-            add_filter( 'site_transient_update_plugins', array( $this, 'update' ) );
-            add_action( 'upgrader_process_complete', array( $this, 'purge' ), 10, 2 );
-            add_action( 'admin_notices', array( $this, 'general_admin_notice' ) );
-            add_action( 'admin_menu', array( $this, 'add_admin_pages' ) );
-            add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
+            // Register hooks only if we have valid plugin data
+            if ( $this->cache_key && $this->plugin ) {
+                add_filter( 'plugins_api', array( $this, 'info' ), 20, 3 );
+                add_filter( 'site_transient_update_plugins', array( $this, 'update' ) );
+                add_action( 'upgrader_process_complete', array( $this, 'purge' ), 10, 2 );
+                add_action( 'admin_notices', array( $this, 'general_admin_notice' ) );
+                add_action( 'admin_menu', array( $this, 'add_admin_pages' ) );
+                add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
 
-            $this->check();
+                $this->check();
+            }
         }
         /**
          * Add license link to plugin action links
@@ -78,6 +95,10 @@ if ( ! class_exists( 'AFF_Pro_License_Manager' ) ) {
          * @return array Modified links array
          */
         public function plugin_action_links( $links_array, $plugin_file_name ) {
+            if ( ! $this->plugin || ! isset( $this->plugin['path'] ) || ! isset( $this->plugin['slug'] ) ) {
+                return $links_array;
+            }
+            
             if ( $plugin_file_name === $this->plugin['path'] ) {
                 $license_url = admin_url( 'admin.php?page=' . $this->plugin['slug'] . '-license' );
                 array_unshift( $links_array, '<a href="' . esc_url( $license_url ) . '">' . __( 'License', 'aff-pro' ) . '</a>' );
@@ -88,6 +109,10 @@ if ( ! class_exists( 'AFF_Pro_License_Manager' ) ) {
          * Add admin pages for license management
          */
         public function add_admin_pages() {
+            if ( ! $this->plugin || ! isset( $this->plugin['slug'] ) ) {
+                return;
+            }
+            
             add_submenu_page(
                 'null',
                 __( 'License', 'aff-pro' ),
