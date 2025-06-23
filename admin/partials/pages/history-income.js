@@ -14,7 +14,6 @@ const template = `
               </div>
             <div class="col-2 text-right">
                     <q-input class="hidden" filled v-model="filters.search" label="Nhập ID đơn hàng, hoặc tài khoản" dense debounce="500"/>
-	                <q-btn round color="pink" icon="file_download" class="q-ml-xs" size="sm" @click="exportExcel"><q-tooltip>Xuất excel</q-tooltip></q-btn>
             </div>
             
             <div class="col-3">
@@ -149,13 +148,7 @@ export default {
             this.$q.loading.hide()
           
         },
-        exportExcel(){
-            if(!this.records.length)
-                return this.NOTIFY('Không có bản ghi', 0)
-            const filters = btoa(JSON.stringify(this.filters))
-            const url = this.configs.site_url + '/wp-admin/admin-ajax.php?action=aff_export_excel_income&filters=' + filters
-            this.openURL(url)
-        },
+
 	},
 	components:{
 	},

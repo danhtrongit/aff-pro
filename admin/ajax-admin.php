@@ -76,8 +76,6 @@ class AFF_Ajax_Admin
 			'aff_assign_commission'       => 'aff_assign_commission',
 			'aff_list_order_comments'     => 'aff_list_order_comments',
 			'aff_get_user_order_income'   => 'aff_get_user_order_income',
-			'aff_export_excel_payment'    => 'aff_export_excel_payment',
-			'aff_export_excel_income'     => 'aff_export_excel_income',
 
 
 
@@ -119,17 +117,7 @@ class AFF_Ajax_Admin
 
 		}
 
-	public function aff_export_excel_payment()
-		{
-		include AFF_PATH . 'helpers/excel/payment.php';
-		die();
-		}
 
-	public function aff_export_excel_income()
-		{
-		include AFF_PATH . 'helpers/excel/income.php';
-		die();
-		}
 
 	private function checkPermissionAdmin()
 		{

@@ -13,7 +13,6 @@ const template = `
                 <q-btn :color="filters.status === 0 ? 'primary' : 'grey'" label="Chờ duyệt" class="q-mr-sm" @click="filters.status = 0"/>
                 <q-btn :color="filters.status == 1 ? 'primary' : 'grey'" label="Đã duyệt" class="q-mr-sm" @click="filters.status = 1"/>
                 <q-btn :color="filters.status == 2 ? 'primary' : 'grey'" label="Đã hủy" @click="filters.status = 2"/>
-                <q-btn round color="pink" icon="file_download" class="q-ml-xs" size="sm" @click="exportExcel"><q-tooltip>Xuất excel</q-tooltip></q-btn>
               </div>
             <div class="col-2">
             </div>
@@ -255,13 +254,7 @@ export default {
                 
             
         },
-        exportExcel(){
-            if(!this.records.length)
-                return this.NOTIFY('Không có bản ghi', 0)
-            const filters = btoa(JSON.stringify(this.filters))
-            const url = this.configs.site_url + '/wp-admin/admin-ajax.php?action=aff_export_excel_payment&filters=' + filters
-            this.openURL(url)
-        },
+
         showQr(record){
             // https://api.vietqr.io/'970436/stk/amount/note/qr_only.jpg
             const payment = {...record}
