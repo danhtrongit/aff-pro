@@ -209,15 +209,13 @@ include_once "classes/user-relationship-class.php"; // Mối quan hệ user
 include_once "classes/payment-class.php";       // Thanh toán
 include_once "classes/banner-class.php";        // Quản lý banner
 
-// Tải class chính dựa trên phiên bản PHP
-if ( version_compare( PHP_VERSION, '8.1', '>=' ) ) {
-	// PHP 8.1+ - sử dụng version mới
-	require plugin_dir_path( __FILE__ ) . 'includes/class-momo-mh-en8.php';
-	require plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro8.php';
-} else {
-	// PHP < 8.1 - sử dụng version cũ
-	require plugin_dir_path( __FILE__ ) . 'includes/class-momo-mh-en.php';
-	require plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro.php';
+// Tải các class chính của plugin
+require plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro-license.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-aff-pro.php';
+
+// Khởi tạo license manager
+if ( class_exists( 'AFF_Pro_License_Manager' ) ) {
+	new AFF_Pro_License_Manager( plugin_dir_path( __FILE__ ) . 'includes/plugin.json' );
 }
 
 /**
