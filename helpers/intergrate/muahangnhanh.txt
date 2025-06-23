@@ -1,0 +1,33 @@
+add_action('after_devvn_quickbuy_note', 'devvn_after_devvn_quickbuy_note');
+function devvn_after_devvn_quickbuy_note(){
+    ?>
+    <input type="hidden" class="input-hidden ref_id" name="ref_id" value="">
+    <input type="hidden" class="input-hidden ref_path" name="ref_path" value="">
+    <input type="hidden" class="input-hidden ref_product" name="ref_product" value="">
+    <script>
+        function set_ref_field(){
+            const ref_field = jQuery('.ref_id');
+            const ref_path = jQuery('.ref_path');
+            const ref_product = jQuery('.ref_product');
+            if(ref_field.length > 0)
+            {
+                let mhref =  Cookies.get('pm'); // Đổi Ref thành pm - từ đổi trên plugin
+                if(mhref){
+                    mhref = JSON.parse(mhref);
+                    if(mhref){
+                        ref_field.val(mhref.mhref);
+                        ref_path.val(mhref.mhpath)
+                        ref_product.val(mhref.mhproduct)
+                    }
+                }
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function (){
+            set_ref_field();
+        });
+        jQuery('body').on('popup_quickbuy_open', function (){
+            set_ref_field();
+        })
+    </script>
+    <?php
+}

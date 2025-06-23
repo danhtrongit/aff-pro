@@ -1,0 +1,53 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+ .aff-image-copy-link{
+     width: 25px !important;
+     height: 25px !important;
+ }
+ .aff-copy-button {
+    display: flex;
+    margin-bottom: 10px;
+ }
+ .aff-copy-button input {
+  font-size: 13px;
+  border: 1px solid #ddd;
+  flex-grow: 1;
+  border-radius: 4px;
+  height: 36px;
+  white-space: nowrap;
+
+ }
+  .aff-copy-button input {
+    margin-right: 5px;
+  }
+
+  .aff-copy-button a{
+    background: #189eff !important;
+    outline: 0;
+    color:#fff;
+    font-size: 13px;
+    height: 36px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        white-space: nowrap;
+    border: 0;
+    border-radius: 4px;
+  }
+  .aff-copy-button svg{
+    fill: #fff;
+    margin-right: 8px;
+  }
+  .aff-text-commission{
+    font-size: 14px; color: #cc1818;
+    margin-bottom: 5px;
+  }
+
+  .ta svg{
+    fill: #189eff;
+    width: 14px;
+  }
